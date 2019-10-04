@@ -9,6 +9,13 @@ public class PlayerController : MonoBehaviour
     public float power = 1000f;
     public GameObject cannonBall;
     public Transform spawnPoint;
+    public AudioClip sound1;
+    AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,5 +43,6 @@ public class PlayerController : MonoBehaviour
         GameObject newBullet =
             Instantiate(cannonBall, spawnPoint.position, Quaternion.identity) as GameObject;
         newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * power);
+        audioSource.PlayOneShot(sound1);
     }
 }
