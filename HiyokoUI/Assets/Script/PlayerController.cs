@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // while pause, don't move and shoot
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
         transform.Translate(Input.GetAxisRaw(
             "Horizontal") * speed * Time.deltaTime, 0, 0);
         transform.position = new Vector2(Mathf.Clamp(
